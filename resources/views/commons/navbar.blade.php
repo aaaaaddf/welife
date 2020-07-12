@@ -8,11 +8,10 @@
         </button>
         
         <div class="collapse navbar-collapse" id="nav-bar">
-            <ul class="navbar-nav mr-auto">
-                <ul class="navbar-nav">
-                    
+            <ul class="navbar-nav mr-auto"></ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>{!! link_to_route('signup.get','Signup',[],['class'=>'nav-link']) !!}</li>
                 </ul>
-            </ul>
         </div>
     </nav>
 </header>
