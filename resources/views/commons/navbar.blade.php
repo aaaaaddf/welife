@@ -16,7 +16,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             {{-- ユーザ詳細ページへのリンク --}}
-                            <li class="dropdown-item"><a href="#">My page</a></li>
+                            <li class="dropdown-item">{!! link_to_route('users.show','My page',['user'=>Auth::id()]) !!}</li>
                             <li class="dropdown-item"><a href="#">投稿一覧</a></li>
                             <li class="dropdown-divider"></li>
                             {{-- ログアウトへのリンク --}}
