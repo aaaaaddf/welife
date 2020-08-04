@@ -27,7 +27,7 @@
                 </li>
                 <li class="list-group-item">
                     <span>アイテム:</span>
-                    @foreach($camppost->items as $item)
+                    @foreach($camppost->item as $item)
                                           <span>{{ $item->name }}</span>
                                          @endforeach
                 </li>

@@ -13,6 +13,6 @@ class Item extends Model
     }
     
     public function campposts(){
-        return $this->belongsToMany(Camppost::class,'camppost_items','items_id');
+        return $this->belongsToMany(Camppost::class,'camppost_items','items_id','camppost_id');
     }
 }
