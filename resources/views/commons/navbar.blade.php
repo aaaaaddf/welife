@@ -17,7 +17,8 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             {{-- ユーザ詳細ページへのリンク --}}
                             <li class="dropdown-item">{!! link_to_route('users.show','My page',['user'=>Auth::id()]) !!}</li>
-                            <li class="dropdown-item"><a href="#">投稿一覧</a></li>
+                            <li class="dropdown-item">{!! link_to_route('campposts.index','投稿一覧',['user'=>Auth::id()]) !!}</li>
+                            <li class="dropdown-item">{!! link_to_route('search','投稿検索') !!}</li>
                             <li class="dropdown-divider"></li>
                             {{-- ログアウトへのリンク --}}
                             <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>

@@ -2,28 +2,18 @@
 
 @section('content')
 
-    <div class="text-center">
-        <h1>Login</h1>
-    </div>
-    
-    <div class="row">
-        <div class="col-sm-6 offset-sm-3">
-            
-            {!! Form::open(['route'=>'login.post']) !!}
-                <div class="form-group">
-                    {!! Form::label('email','メール') !!}
-                    {!! Form::email('email',old('email'),['class'=>'form-control']) !!}
-                </div>
-                
-                <div class="form-group">
-                    {!! Form::label('password','パスワード') !!}
-                    {!! Form::password('password',['class'=>'form-control']) !!}
-                </div>
-                
-                {!! Form::submit('Login',['class'=>'btn btn-primary btn-block']) !!}
-            {!! Form::close() !!}
-            
-            <p class="mt-2">アカウントを作成する {!! link_to_route('signup.get','Sign up now!') !!}</p>
-        </div>
-    </div>
+    {!! Form::open(['route'=>'login.post']) !!}
+<link rel="stylesheet" href="/css/login.css">
+<div class="login-page">
+  <div class="form">
+    <form class="login-form">
+      <input type="text" name="email" placeholder="email"/>
+      <input type="password" name="password" placeholder="password"/>
+      <button>login</button>
+      <p class="message">Not registered? {!! link_to_route('signup.get', 'Signup', [], ['class' => 'nav-link']) !!}</p>
+    </form>
+  </div>
+</div>
+ {!! Form::close() !!}
 @endsection
+

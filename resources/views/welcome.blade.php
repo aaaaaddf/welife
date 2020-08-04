@@ -1,12 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <div class="center jumbotron">
-        <div class="text-center">
-            <h1>あなたの休日を楽しく We life</h1>
-            {!! link_to_route('signup.get','Sign up now!',[],['class'=>'btn btn-lg btn-primary'] ) !!}
+  
+    @if (Auth::check())
+      
+            @include('campposts.campposts')
+        
+    @else
+         <link rel="stylesheet" href="/css/style.css">
+       <header>
+           
+       </header>
+            <div class="top-wrapper">
+                <div class="container">
+                  <h1>BE HAPPY THROUGH THE LIFE</h1>
+                  <h1>人生は一度きり。</h1>
+                   <p>WelifeはあなたのQOlをキャンプ用品のシェアを通じて向上させます</p>
+                   <p class="last-p">さぁはじめよう。新たな冒険を。</p>
+                </div>
+                 {!! link_to_route('signup.get', '新規登録', [], ['class' => 'btn btn-outline-danger']) !!}
+                <span class="a">or</span>
+               
+                 {!! link_to_route('login', 'ログインする', [], ['class' => 'btn btn-outline-danger']) !!}
+            </div>
             
-        </div>
-    </div>
+    @endif
 @endsection
+
