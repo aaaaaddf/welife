@@ -10,7 +10,7 @@ class CamppostItem extends Model
   public $timestamps = false;
   
   public function camppost(){
-      return $this->belongsTo('App\Camppost');
+      return $this->belongsTo(Camppost::class);
   }
   
   public function item(){

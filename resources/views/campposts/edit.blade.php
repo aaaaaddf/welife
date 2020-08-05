@@ -6,10 +6,10 @@
     
     <div class="row">
         <div class="col-6">
-            {!! Form::model($camppost,['route'=>['campposts.update',$camppost->id],'method'=>'put']) !!}
+            {!! Form::model($camppost,['route'=>['campposts.update',$camppost->id],'method'=>'put','files'=>true]) !!}
             <div class="form-group">
             {!! Form::label('file', '画像投稿', ['class' => 'control-label']) !!}
-            {!! Form::file('file',old($camppost->image)) !!}
+           {!! Form::file('file') !!}
              {{ csrf_field() }}
             </div>
             
@@ -30,30 +30,42 @@
             </div>
             
             <div class="form-group">
+                <?php
+                    //dd($camppost->start_date);
+                ?>
                 <label style="font-weight:bold;">開始日:</label>
-                <input name="start_date" type="date" / class="form-control"　value={{ $camppost->start_date }}>
+                <input name="start_date" type="date"  class="form-control" value={{ $camppost->start_date }} >
                 
             </div>
             
             <div class="form-group">
                 <label style="font-weight:bold;">最終日:</label>
-                <input name="end_date" type="date" / class="form-control" value={{ $camppost->end_date }} >
+                <input name="end_date" type="date"  class="form-control" value={{ $camppost->end_date }} >
             </div>
             
             <div class="form-group">
-                <label style="font-weight:bold;">貸し出す商品(複数選択可能)</label>
+                
+                
+              {{ Form::select('items_id',$items,$camppost->camppost_item->items_id,[ 'class' => 'form-control' , 'multiple' => 'multiple']) }}
+             
          
              <?php 
-               foreach ($items as $key => $item){
-                   
-                   if($camppost->items_id==$key){
+               /* foreach ($items as $key => $item){
+                  
+                  dd($items);
+                   foreach ($camppost->camppost_item->items_id as $item2){
+                       
+                         if($item2->items_id==$key){
                         echo '<input type="checkbox" name="items_id" value="'.$key.'"selected>'.$item.'</option>';
                    }else{
                     echo '<input type="checkbox" name="items_id" value="'.$key.'">'.$item.'</option>';
                 }
+                   }
+                   
                }
-                
+                */
               ?>
+              
             </div>
             
             <div class="form-group">

@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Camppost extends Model{
     
+    protected $fillable=['image','place','start_date','end_date','special','prefecture_id','user_id'];
+    
     public function user(){
          return $this->belongsTo(User::class);
     }
@@ -15,6 +17,10 @@ class Camppost extends Model{
     
     public function prefecture(){
         return $this->belongsTo(Prefecture::class);
+    }
+    
+    public function camppost_item(){
+        return $this->hasOne('App\CamppostItem');
     }
     
 }

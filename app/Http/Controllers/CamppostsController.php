@@ -42,7 +42,7 @@ class CamppostsController extends Controller
                 "special"=>$request->special,
                 ]);
                 
-            $camppost->items()->sync($request->items_id);
+            $camppost->item()->sync($request->items_id);
              $user = \Auth::user();
               
    
@@ -130,20 +130,21 @@ class CamppostsController extends Controller
     
     public function update(Request $request,$id){
     
-        
+       
         $camppost = \App\Camppost::findOrFail($id);
-       
-      
-        $file = $request->file('file');
-       
-        $path = \Storage::disk('s3')->put('welife-user', $file);
+       if(isset($request->file)){
+            $file = $request->file('file');
+        
+        $path = \Storage::disk('s3')->putFile('welife-user',$file,'public');
         $url= \Storage::disk('s3')->url($path);
+        $camppost->image=$url;
+       }
        
         $camppost->prefecture_id=$request->prefecture_id;
         $camppost->start_date=$request->start_date;
         $camppost->end_date=$request->end_date;
         $camppost->special=$request->special;
-        $camppost->items()->sync($request->items_id);
+        $camppost->item()->sync($request->items_id);
         
         $camppost->save();
         return redirect('/');
