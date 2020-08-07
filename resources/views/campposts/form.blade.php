@@ -7,7 +7,7 @@
     
      <div class="form-group @if(!empty($errors->first('file'))) has-error @endif">
             {!! Form::label('file', '画像投稿', ['class' => 'control-label']) !!}
-            {!! Form::file('file') !!}
+            {!! Form::file('file',['multiple'=>'multiple']) !!}
              {{ csrf_field() }}
             <span class="help-block">{{$errors->first('file')}}</span>
       </div>

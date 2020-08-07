@@ -1,5 +1,4 @@
 <?php
-
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -39,5 +38,9 @@ class User extends Authenticatable
     
     public function campposts(){
         return $this->hasMany(Camppost::class);
+    }
+    
+    public function camppost_borrows(){
+        return $this->hasOne(CamppostBorrow::class);
     }
 }

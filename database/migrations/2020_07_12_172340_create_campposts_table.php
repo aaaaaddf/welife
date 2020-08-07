@@ -23,7 +23,7 @@ class CreateCamppostsTable extends Migration
             $table->string('special')->nullable();
             $table->unsignedBigInteger('prefecture_id')->nullable();
             $table->timestamps();
-           $table->foreign('user_id')->references('id')->on('users');
+           $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
            
            $table->foreign('prefecture_id')->references('id')->on('prefectures');
             
@@ -37,7 +37,7 @@ class CreateCamppostsTable extends Migration
      */
     public function down()
     {
-       
+       Schema::dropIfExists('camppost_borrows');
         Schema::dropIfExists('campposts');
         
         Schema::dropIfExists('prefectures');

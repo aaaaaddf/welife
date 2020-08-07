@@ -17,8 +17,9 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UsersController', ['only' => ['show']]);
+    Route::resource('campposts','CamppostsController');
+    Route::get('Campposts/create','CamppostsController@create')->name('campposts.form');
+    Route::post('borrow/{id}','CamppostBorrowsController@store')->name('camppost_borrows.store');
+    Route::get('search','CamppostsController@search')->name('search');
+    Route::get("request/{owner_id}",'CamppostBorrowsController@notification')->name('notification');
 });
-Route::resource('campposts','CamppostsController');
-Route::get('Campposts/create','CamppostsController@create')->name('campposts.form');
-Route::post('form','CamppostsController@index')->name('camppost_borrows.store');
-Route::get('search','CamppostsController@search')->name('search');

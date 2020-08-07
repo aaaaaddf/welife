@@ -29,7 +29,7 @@
                 @endif
             </ul>
            
-               @include('campposts.campposts')
+               @include('campposts.campposts2')
         </div>
             
         </div>

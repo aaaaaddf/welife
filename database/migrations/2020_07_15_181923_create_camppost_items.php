@@ -17,7 +17,7 @@ class CreateCamppostItems extends Migration
             $table->unsignedBigInteger('camppost_id');
             $table->unsignedBigInteger('items_id');
               
-             $table->foreign('camppost_id')->references('id')->on('campposts')->onDelete('cascade');;
+             $table->foreign('camppost_id')->references('id')->on('campposts')->onDelete('cascade');
              $table->foreign('items_id')->references('id')->on('items');
         });
     }

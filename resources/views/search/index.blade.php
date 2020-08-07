@@ -44,7 +44,7 @@
     <h1>結果</h1>
    @if(isset($searched_campposts))
        <div class="border">
-           @include('campposts.campposts2')
+           @include('campposts.campposts')
        </div>
     @else
         <h2>検索結果はありません</h2>

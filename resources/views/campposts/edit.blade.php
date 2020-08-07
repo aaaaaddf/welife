@@ -46,7 +46,7 @@
             <div class="form-group">
                 
                 
-              {{ Form::select('items_id',$items,$camppost->camppost_item->items_id,[ 'class' => 'form-control' , 'multiple' => 'multiple']) }}
+              {{ Form::select("items_id[]",$items,$camppost->camppost_item->items_id,[ 'class' => 'form-control' , 'multiple' => 'multiple']) }}
              
          
              <?php 

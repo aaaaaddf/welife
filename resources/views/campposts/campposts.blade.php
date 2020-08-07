@@ -1,17 +1,24 @@
-<link rel="stylesheet" href="/css/campposts.css">
+<link rel="stylesheet" href="/css/campposts.scss">
 @if(count($campposts) > 0)
-    <ul class="list-unstyled">
-        @foreach($campposts as $camppost)
-           <div class="flex">
-             <li class="media mb-3">
-                {{-- 投稿の所有者のメールアドレスをもとにGravatarを取得して表示 --}}
+    
+            <ul class="list-unstyled">
+                <div class="container">
+                <div  class="row">
+            @foreach($campposts as $camppost)
+              
+                     <div class="col-md-6">
+        
+            <div class="profile">
                 <img class="mr-2 rounded" src="{{ Gravatar::get($camppost->user->email, ['size' => 50]) }}" alt="">
+                {!! link_to_route('users.show',$camppost->user->name,['user'=>$camppost->user->id]) !!}
+                </div>          
+             <li class="media mb-3">
+                
                 <div class="media-body">
-                    <div>
-                       {!! link_to_route('users.show',$camppost->user->name,['user'=>$camppost->user->id]) !!}
-                    </div>
                     <div class="card" style="width:20rem;">
+                        <div class="img">
                 <img class="card-img-top" src={{$camppost->image}} alt="">
+                        </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <span>場所:</span>
@@ -32,17 +39,17 @@
                                          @endforeach
                 </li>
                 </ul>
-                </div>
+                
                  
             @if($user->id!=$camppost->user_id)
                   <p>どのくらい借りる？</p>
-                  {!! Form::open(['route'=>'camppost_borrows.store']) !!}
+                  {!! Form::open(['route'=>['camppost_borrows.store','id' => $camppost->id],'method'=>'POST']) !!}
                     <div class="form-group">
-                        {!! Form::label('start_date','開始日',['class'=>'form-control']) !!}
+                        {!! Form::label('start_date','開始日') !!}
                          {!! Form::date('start_date', now()->format('Y-m-d'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="form-group">
-                         {!! Form::label('end_date',"最終日",['class'=>'form-control']) !!}
+                         {!! Form::label('end_date',"最終日") !!}
                          {!! Form::date('end_date', now()->format('Y-m-d'), ['class' => 'form-control']) !!}
                     </div>
                     {!! Form::submit('借りる', ['class' => 'btn btn-secondary']) !!}
@@ -56,12 +63,17 @@
                 {!! link_to_route('campposts.edit', '投稿を編集する', ['camppost' => $camppost->id], ['class' => 'btn btn-light']) !!}
             @endif
                 </div>
-                
+            </div>
             </li>
-           </div>
+                </div>
+                
+            
+          
         @endforeach
         
-    </ul>
+        </ul>
+        </div>
+        </div>
     
     {{ $campposts->links() }}
 @endif

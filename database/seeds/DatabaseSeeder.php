@@ -13,5 +13,9 @@ class DatabaseSeeder extends Seeder
     {
        $this->call('PrefecturesSeeder');
         $this->call('ItemsSeeder');
+        $this->call('UsersTableSeeder');
+        $this->call('CamppostsTableSeeder');
+        $this->call('Camppost_itemsTableSeeder');
+        $this->call('Camppost_borrowsTableSeeder');
     }
 }
