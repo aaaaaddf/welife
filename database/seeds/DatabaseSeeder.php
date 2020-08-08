@@ -12,10 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
        $this->call('PrefecturesSeeder');
-        $this->call('ItemsSeeder');
-        $this->call('UsersTableSeeder');
-        $this->call('CamppostsTableSeeder');
-        $this->call('Camppost_itemsTableSeeder');
-        $this->call('Camppost_borrowsTableSeeder');
+       $this->call('ItemsSeeder');
+       
     }
 }
