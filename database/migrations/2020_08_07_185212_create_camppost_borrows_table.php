@@ -21,7 +21,7 @@ class CreateCamppostBorrowsTable extends Migration
              $table->string('end_date');
               $table->timestamps();
              $table->unsignedBigInteger('owner_id');
-             $table->unique(['owner_id','user_id']);
+             $table->unique(['camppost_id','user_id']);
              $table->foreign('camppost_id')->references('id')->on('campposts')->onDelete('cascade');
              $table->foreign('user_id')->references('id')->on('users');
             

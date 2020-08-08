@@ -39,23 +39,27 @@
                                          @endforeach
                 </li>
                 </ul>
-                
-                 
-            @if($user->id!=$camppost->user_id)
-                  <p>どのくらい借りる？</p>
-                  {!! Form::open(['route'=>['camppost_borrows.store','id' => $camppost->id],'method'=>'POST']) !!}
+            
+                @if($user->id!=$camppost->user_id)
+                    <p>どのくらい借りる？</p>
+                    {!! Form::open(['route'=>['camppost_borrows.store','id' => $camppost->id],'method'=>'POST']) !!}
                     <div class="form-group">
                         {!! Form::label('start_date','開始日') !!}
-                         {!! Form::date('start_date', now()->format('Y-m-d'), ['class' => 'form-control']) !!}
+                        {!! Form::date('start_date', now()->format('Y-m-d'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="form-group">
-                         {!! Form::label('end_date',"最終日") !!}
-                         {!! Form::date('end_date', now()->format('Y-m-d'), ['class' => 'form-control']) !!}
+                        {!! Form::label('end_date',"最終日") !!}
+                        {!! Form::date('end_date', now()->format('Y-m-d'), ['class' => 'form-control']) !!}
                     </div>
                     {!! Form::submit('借りる', ['class' => 'btn btn-secondary']) !!}
-                {!! Form::close() !!}
-            @endif    
-            
+                    {!! Form::close() !!}
+                @endif
+              @if(session()->has('errorMessage'))
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>既にリクエスト済みです</strong>
+                </div>
+            @endif
             @if($camppost->user_id==Auth::user()->id)
                 {!! Form::model($camppost,['route'=>['campposts.destroy',$camppost->id],'method'=>'delete']) !!}
                     {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}

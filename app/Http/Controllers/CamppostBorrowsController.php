@@ -14,7 +14,19 @@ class CamppostBorrowsController extends Controller
         
         $camppost = \App\Camppost::findOrFail($id);
         
-        $request->validate([
+         $query = \App\CamppostBorrow::query();
+         $query->where('user_id',Auth::user()->id);
+         $query->where('owner_id',$camppost->user_id);
+     
+         $borrow_user=$query->get();
+          $errorMessage=null;
+         if($borrow_user->isNotEmpty()){
+             $errorMessage="リクエスト済みです";
+             return back()->with([
+            'errorMessage'=>$errorMessage,
+            ]);
+         }else{
+             $request->validate([
             'start_date'=>'required',
             'end_date'=>'required',
             ]);
@@ -27,7 +39,11 @@ class CamppostBorrowsController extends Controller
                 'owner_id'=>$camppost->user_id,
                 ]);
         
-        return back();
+        return back()->with([
+            'errorMessage'=>$errorMessage,
+            ]);
+         }
+        
     }
     
     public function notification($owner_id){
