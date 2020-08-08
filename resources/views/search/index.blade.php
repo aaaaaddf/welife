@@ -9,7 +9,7 @@
           <select name="prefecture_id" class="form-control">
               <?php 
                foreach ($prefectures as $key => $prefecture){
-                    echo '<option value ="'.$key.'"required>'.$prefecture.'</option>';
+                    echo '<option value ="'.$key.'">'.$prefecture.'</option>';
                 }
                 
               ?>
@@ -18,12 +18,12 @@
 
 <div class="form-group">
         <label style="font-weight:bold;">開始日:</label>
-        <input name="start_date" type="date" / class="form-control" required>
+        <input name="start_date" type="date" / class="form-control">
 </div>
 
 <div class="form-group">
         <label style="font-weight:bold;">最終日:</label>
-        <input name="end_date" type="date" / class="form-control" required>
+        <input name="end_date" type="date" / class="form-control">
         <span class="help-block">{{ $errors->first('end_date') }}</span>
     </div>
     
@@ -41,8 +41,11 @@
 {!! Form::submit('検索する', ['class' => 'btn btn-primary btn-block']) !!}
 {!! Form::hidden('action', 'search') !!}
     {!! Form::close() !!}
+    <?php
+    
+    ?>
     <h1>結果</h1>
-   @if(isset($searched_campposts))
+   @if(isset($campposts))
        <div class="border">
            @include('campposts.campposts')
        </div>

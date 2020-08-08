@@ -1,15 +1,15 @@
-@extend('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 @if(count($camppost_borrow_useres)>0)
-
+    <h1>借りるリクエスト一覧</h1>
     @foreach( $camppost_borrow_useres as $camppost_borrow_user)
-      <h1>借りるリクエスト一覧</h1>
+      
      
                <div class="border">
-                <img class="mr-2 rounded" src="{{ Gravatar::get($camppost->user->email, ['size' => 50]) }}" alt="">
+                <img class="mr-2 rounded" src="{{ Gravatar::get($camppost_borrow_user->camppost->user->email, ['size' => 50]) }}" alt="">
                 {!! link_to_route('users.show',$camppost_borrow_user->camppost->user->name,['user'=>$camppost_borrow_user->camppost->user->id]) !!}
-                </div>          
+                
              <li class="media mb-3">
                 
                 <div class="media-body">
@@ -55,16 +55,18 @@
             @endif    
             
             @if($camppost_borrow_user->camppost->user_id==Auth::user()->id)
-                {!! Form::model($camppost,['route'=>['campposts.destroy',$camppost->id],'method'=>'delete']) !!}
+                {!! Form::model($camppost_borrow_user->camppost,['route'=>['campposts.destroy',$camppost_borrow_user->camppost->id],'method'=>'delete']) !!}
                     {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
                 {!! Form::close() !!}
-                {!! link_to_route('campposts.edit', '投稿を編集する', ['camppost' => $camppost->id], ['class' => 'btn btn-light']) !!}
+                {!! link_to_route('campposts.edit', '投稿を編集する', ['camppost' => $camppost_borrow_user->camppost->id], ['class' => 'btn btn-light']) !!}
             @endif
         </div>
       </div>
     </div>
-    <p>この投稿に対して{{$camppost_borrow_user->user->name}}さんがリクエストをしています</p>
+    <p>この投稿に対して {!! link_to_route('users.show',$camppost_borrow_user->user->name,['user'=>$camppost_borrow_user->user->id]) !!}さんがリクエストをしています</p>
     <p>リクエスト時間:{{$camppost_borrow_user->created_at}}</p>
     @endforeach
+    @else
+        <h1>現在あなたの投稿に対してリクエストはありません</h1>
     @endif
 @endsection

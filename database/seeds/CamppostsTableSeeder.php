@@ -17,7 +17,7 @@ class CamppostsTableSeeder extends Seeder
                 'user_id'=>1,
                 'start_date'=>'2020-08-06',
                 'end_date'=>'2020-08-09',
-                'specilal'=>'nothing particular',
+                'special'=>'nothing particular',
                 'prefecture_id'=>2,
                 
                 ],
@@ -26,7 +26,7 @@ class CamppostsTableSeeder extends Seeder
                 'user_id'=>2,
                 'start_date'=>'2020-08-06',
                 'end_date'=>'2020-08-09',
-                'specilal'=>'nothing particular',
+                'special'=>'nothing particular',
                 'prefecture_id'=>3,
                 
                 ],

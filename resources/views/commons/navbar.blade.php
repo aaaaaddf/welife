@@ -19,7 +19,7 @@
                             <li class="dropdown-item">{!! link_to_route('users.show','My page',['user'=>Auth::id()]) !!}</li>
                             <li class="dropdown-item">{!! link_to_route('campposts.index','投稿一覧',['user'=>Auth::id()]) !!}</li>
                             <li class="dropdown-item">{!! link_to_route('search','投稿検索') !!}</li>
-                            <li class="dropdown-item">{!! link_to_route('request','投稿検索',['owner_id'=>Auth::id()]) !!}</li>
+                            <li class="dropdown-item">{!! link_to_route('notification','投稿リクエスト一覧',['owner_id'=>Auth::id()]) !!}</li>
                             <li class="dropdown-divider"></li>
                             {{-- ログアウトへのリンク --}}
                             <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
