@@ -43,7 +43,7 @@
     ?>
     <h1>結果</h1>
     <?php
-    
+    $campposts;
     ?>
    @if((!$campposts->isEmpty()))
        <div class="border">
