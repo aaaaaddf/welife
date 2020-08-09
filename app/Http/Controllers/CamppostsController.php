@@ -94,7 +94,7 @@ class CamppostsController extends Controller
         $prefectures = $prefectures -> prepend('都道府県','');
        
         $items = \App\Item::orderBy('id','asc')->get()->pluck('name','id');
-        $campposts = [];
+       $campposts= collect([]);
         
         if ($request->input('action') === 'search') {
             // 検索された    
@@ -122,14 +122,13 @@ class CamppostsController extends Controller
             
             if(!empty($searched_items)){
               $query->whereHas('camppost_item', function($query) use ($searched_items) {
-            $query->where('items_id', $searched_items);
-        
-        });
+                    $query->where('items_id', $searched_items);
+                
+                });
             }
-           
-        
+                   
+                
             $campposts=$query->paginate(10);
-          
         } else {
             // 初期画面
             

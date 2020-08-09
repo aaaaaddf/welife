@@ -39,13 +39,10 @@
 {!! Form::hidden('action', 'search') !!}
     {!! Form::close() !!}
     <?php
-    
+  // dd($campposts);
     ?>
     <h1>結果</h1>
-    <?php
-    $campposts;
-    ?>
-   @if((!$campposts->isEmpty()))
+   @if(!($campposts->isEmpty()))
        <div class="border">
            @include('campposts.campposts')
        </div>
