@@ -64,7 +64,7 @@ class CamppostsController extends Controller
             $user = \Auth::user();
             
             $campposts = \App\Camppost::orderBy('created_at','desc')->paginate(10);
-           
+            
             $data=[
                 'user'=>$user,
                 'campposts'=>$campposts,
@@ -101,30 +101,40 @@ class CamppostsController extends Controller
             $place=$request->input('prefecture_id');
             $start_date=$request->input('start_date');
             $end_date=$request->input('end_date');
-    
+            $searched_items=$request->input('items_id');
+          
             $query = \App\Camppost::query();
            if(!empty($place))
             {
                //$places=$query->where('prefecture_id',$palce)->get();
-               $query->where('prefecture_id',$place);
+              $query->where('prefecture_id',$place);
             }
             
             if(!empty($start_date)){
                 //$start_dates=$query->where('start_date',$start_date)->get();
-                $query->where('start_date',$start_date);
+                 $query->where('start_date',$start_date);
             }
             
             if(!empty($end_date)){
                 //$end_dates=$query->where('end_date',$end_date)->get();
                 $query->where('end_date',$end_date);
             }
+            
+            if(!empty($searched_items)){
+              $query->whereHas('camppost_item', function($query) use ($searched_items) {
+            $query->where('items_id', $searched_items);
+        
+        });
+            }
+           
         
             $campposts=$query->paginate(10);
+          
         } else {
             // 初期画面
             
         }
-        
+       
         return view('search.index',compact('campposts','prefectures','items','user'));
     }
     

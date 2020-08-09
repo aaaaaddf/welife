@@ -28,14 +28,11 @@
     </div>
     
 <div class="form-group">
-    <label style="font-weight:bold;">アイテム</label>
-         
-             <?php 
-               foreach ($items as $key => $item){
-                    echo '<input type="checkbox" name="items_id" value="'.$key.'">'.$item.'</option>';
-                }
-                
-              ?>
+    <label style="font-weight:bold;">アイテム:</label>
+    <?php
+     //dd($items);
+    ?>
+    {!! Form::select("items_id[]",$items,null,['class' => 'form-control','multiple' => 'multiple']) !!}
 </div>
 
 {!! Form::submit('検索する', ['class' => 'btn btn-primary btn-block']) !!}
@@ -45,7 +42,10 @@
     
     ?>
     <h1>結果</h1>
-   @if(isset($campposts))
+    <?php
+    
+    ?>
+   @if((!$campposts->isEmpty()))
        <div class="border">
            @include('campposts.campposts')
        </div>

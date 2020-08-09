@@ -38,7 +38,6 @@
                 </li>
                 </ul>
                 
-                 
             @if(Auth::user()->id!=$camppost_borrow_user->camppost->user_id)
                   <p>どのくらい借りる？</p>
                   {!! Form::open(['route'=>['camppost_borrows.store','id' => $camppost_borrow_user->camppost->id],'method'=>'POST']) !!}

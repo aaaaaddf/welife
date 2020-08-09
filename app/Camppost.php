@@ -20,7 +20,7 @@ class Camppost extends Model{
     }
     
     public function camppost_item(){
-        return $this->hasOne('App\CamppostItem');
+        return $this->hasMany('App\CamppostItem');
     }
     public function camppost_borrow(){
         return $this->hasOne(CamppostBorrow::class);

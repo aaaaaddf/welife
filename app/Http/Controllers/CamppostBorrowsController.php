@@ -16,10 +16,10 @@ class CamppostBorrowsController extends Controller
         
          $query = \App\CamppostBorrow::query();
          $query->where('user_id',Auth::user()->id);
-         $query->where('owner_id',$camppost->user_id);
-     
+         $query->where('camppost_id',$camppost->id);
+         
          $borrow_user=$query->get();
-          $errorMessage=null;
+         $errorMessage=null;
          if($borrow_user->isNotEmpty()){
              $errorMessage="リクエスト済みです";
              return back()->with([

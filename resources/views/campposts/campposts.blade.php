@@ -54,7 +54,15 @@
                     {!! Form::submit('借りる', ['class' => 'btn btn-secondary']) !!}
                     {!! Form::close() !!}
                 @endif
-              @if(session()->has('errorMessage'))
+            <?php
+                $borrow_user=null;
+                $query = \App\CamppostBorrow::query();
+                 $query->where('user_id',Auth::user()->id);
+                 $query->where('camppost_id',$camppost->id);
+                 $borrow_user=$query->first();
+               
+            ?>
+              @if(isset($borrow_user))
                 <div class="alert alert-warning alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <strong>既にリクエスト済みです</strong>
