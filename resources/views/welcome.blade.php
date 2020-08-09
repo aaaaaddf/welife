@@ -18,10 +18,10 @@
                    <p>WelifeはあなたのQOlをキャンプ用品のシェアを通じて向上させます</p>
                    <p class="last-p">さぁはじめよう。新たな冒険を。</p>
                 </div>
-                 {!! link_to_route('signup.get', '新規登録', [], ['class' => 'btn btn-outline-danger']) !!}
+                 {!! link_to_route('signup.get', '新規登録', [], ['class' => 'btn btn-outline-success']) !!}
                 <span class="a">or</span>
                
-                 {!! link_to_route('login', 'ログインする', [], ['class' => 'btn btn-outline-danger']) !!}
+                 {!! link_to_route('login', 'ログインする', [], ['class' => 'btn btn-outline-success']) !!}
             </div>
             
     @endif
