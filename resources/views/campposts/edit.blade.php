@@ -44,10 +44,9 @@
             </div>
             
             <div class="form-group">
-                
-                
-              {{ Form::select("items_id[]",$items,$camppost->camppost_item->items_id,[ 'class' => 'form-control' , 'multiple' => 'multiple']) }}
-             
+             @foreach($camppost->camppost_item as $item)
+              {{ Form::select("items_id[]",$items,$item->items_id,[ 'class' => 'form-control' , 'multiple' => 'multiple']) }}
+             @endforeach
          
              <?php 
                /* foreach ($items as $key => $item){
