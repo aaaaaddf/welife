@@ -4,12 +4,12 @@
     <p>もう一度投稿してください</p>
 @endif
 <?php
-     $camppost = \App\Camppost::findOrFail(Auth::user()->id);
+     $user = \App\User::findOrFail(Auth::user()->id);
 ?>
 
 <div class="top-profile">
- <img class="mr-2 rounded" src="{{ Gravatar::get($camppost->user->email, ['size' => 50]) }}" alt="">
-{!! link_to_route('users.show',$camppost->user->name,['user'=>$camppost->user->id]) !!}
+ <img class="mr-2 rounded" src="{{ Gravatar::get($user->email, ['size' => 50]) }}" alt="">
+{!! link_to_route('users.show',$user->name,['user'=>$user->id]) !!}
 <button class="btn btn-primary" data-toggle="modal" data-target="#modal-example">
       投稿する
   </button>
