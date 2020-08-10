@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Http\Controllers\CamppostsController;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -49,9 +51,17 @@ class CamppostsControllerTest extends TestCase
         $response->assertStatus(200);
     }
     
-    public function test2()
+    /**
+     * A basic feature test example.
+     *
+     * @test
+     */
+    public function searchCampPostが正しく検索できること()
     {
-        
-        
+        $controller = new CamppostsController();
+        $request = new \Illuminate\Http\Request(['prefecture_id' => 2]);
+        $response = $controller->searchCampPost($request);
+        //var_dump($response);
+        $this->assertEquals(1, $response->total());
     }
 }

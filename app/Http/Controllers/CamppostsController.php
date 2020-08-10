@@ -60,15 +60,20 @@ class CamppostsController extends Controller
     
     public function index(){
         $data=[];
+        
         if(\Auth::check()){
             $user = \Auth::user();
-            
+            $prefectures = \App\Prefecture::orderBy('id','asc')->get()->pluck('name', 'id');
+            $prefectures = $prefectures -> prepend('都道府県','');
+       
+            $items = \App\Item::orderBy('id','asc')->get()->pluck('name','id');
             $campposts = \App\Camppost::orderBy('created_at','desc')->paginate(10);
             
             $data=[
                 'user'=>$user,
                 'campposts'=>$campposts,
-                
+                'prefectures'=>$prefectures,
+                'items'=>$items
                 ];
         }
         
@@ -88,6 +93,43 @@ class CamppostsController extends Controller
         return back();
     }
     
+    
+    public function searchCampPost(Request $request)
+    {
+        //var_dump($request);
+        $place=$request->input('prefecture_id');
+        $start_date=$request->input('start_date');
+        $end_date=$request->input('end_date');
+        $searched_items=$request->input('items_id');
+      
+        $query = \App\Camppost::query();
+       if(!empty($place))
+        {
+           //$places=$query->where('prefecture_id',$palce)->get();
+          $query->where('prefecture_id',$place);
+        }
+        
+        if(!empty($start_date)){
+            //$start_dates=$query->where('start_date',$start_date)->get();
+             $query->where('start_date',$start_date);
+        }
+        
+        if(!empty($end_date)){
+            //$end_dates=$query->where('end_date',$end_date)->get();
+            $query->where('end_date',$end_date);
+        }
+        
+        if(!empty($searched_items)){
+          $query->whereHas('camppost_item', function($query) use ($searched_items) {
+                $query->where('items_id', $searched_items);
+            
+            });
+        } 
+            
+        return $query->paginate(10);
+    }
+    
+    
     public function search(Request $request){
          $user = \Auth::user();
           $prefectures = \App\Prefecture::orderBy('id','asc')->get()->pluck('name', 'id');
@@ -98,37 +140,39 @@ class CamppostsController extends Controller
         
         if ($request->input('action') === 'search') {
             // 検索された    
-            $place=$request->input('prefecture_id');
-            $start_date=$request->input('start_date');
-            $end_date=$request->input('end_date');
-            $searched_items=$request->input('items_id');
+        //     $place=$request->input('prefecture_id');
+        //     $start_date=$request->input('start_date');
+        //     $end_date=$request->input('end_date');
+        //     $searched_items=$request->input('items_id');
           
-            $query = \App\Camppost::query();
-           if(!empty($place))
-            {
-               //$places=$query->where('prefecture_id',$palce)->get();
-              $query->where('prefecture_id',$place);
-            }
+        //     $query = \App\Camppost::query();
+        //   if(!empty($place))
+        //     {
+        //       //$places=$query->where('prefecture_id',$palce)->get();
+        //       $query->where('prefecture_id',$place);
+        //     }
             
-            if(!empty($start_date)){
-                //$start_dates=$query->where('start_date',$start_date)->get();
-                 $query->where('start_date',$start_date);
-            }
+        //     if(!empty($start_date)){
+        //         //$start_dates=$query->where('start_date',$start_date)->get();
+        //          $query->where('start_date',$start_date);
+        //     }
             
-            if(!empty($end_date)){
-                //$end_dates=$query->where('end_date',$end_date)->get();
-                $query->where('end_date',$end_date);
-            }
+        //     if(!empty($end_date)){
+        //         //$end_dates=$query->where('end_date',$end_date)->get();
+        //         $query->where('end_date',$end_date);
+        //     }
             
-            if(!empty($searched_items)){
-              $query->whereHas('camppost_item', function($query) use ($searched_items) {
-                    $query->where('items_id', $searched_items);
+        //     if(!empty($searched_items)){
+        //       $query->whereHas('camppost_item', function($query) use ($searched_items) {
+        //             $query->where('items_id', $searched_items);
                 
-                });
-            }
+        //         });
+        //     }
                    
                 
-            $campposts=$query->paginate(10);
+            // $campposts=$query->paginate(10);
+            
+            $campposts=$this->searchCampPost($request);
         } else {
             // 初期画面
             

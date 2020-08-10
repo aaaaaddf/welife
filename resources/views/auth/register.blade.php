@@ -12,13 +12,6 @@
 					<input class="text email" type="email" name="email" placeholder="Eメール" required="">
 					<input class="text" type="password" name="password" placeholder="パスワード" required="">
 					<input class="text w3lpass" type="password" name="password_confirmation" placeholder="確認" required="">
-					<div class="wthree-text">
-						<label class="anim">
-							<input type="checkbox" class="checkbox" required="">
-							<span>規約に同意する</span>
-						</label>
-						<div class="clear"> </div>
-					</div>
 					<input type="submit" value="SIGNUP">
 				</form>
 				<p>アカウントをお持ちの方はこちら {!! link_to_route('login', 'ログイン', [], ['class' => 'nav-link']) !!}</p>
