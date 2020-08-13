@@ -29,11 +29,13 @@ class CamppostBorrowsController extends Controller
             'errorMessage'=>$errorMessage,
             ]);
          }else{
-             $request->validate([
-            'start_date'=>'required|date|after_or_equal:'.$today.'|before:'.$nextmonth,
+              $inputs = $request->all();
+             $rules=[
+                 'start_date'=>'required|date|after_or_equal:'.$today.'|before:'.$nextmonth,
             'end_date'=>'required|date|after_or_equal:' . $today . '|before:' . $nextmonth.'|after:start_date',
-            ]);
             
+                 ];
+             $validation = \Validator::make($inputs,$rules);
              if($validation->fails()){
                 return redirect()->back()->withErrors($validation->errors())->withInput();
             }

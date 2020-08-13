@@ -67,9 +67,9 @@
       <p>この投稿に対して {!! link_to_route('users.show',$camppost_borrow_user->user->name,['user'=>$camppost_borrow_user->user->id]) !!}さんがリクエストをしています</p>
     <p>リクエスト時間:{{$camppost_borrow_user->created_at}}</p>
     </div>
-    </div>
-    </div>
     @endforeach
+    </div>
+    </div>
     @else
         <h1>現在あなたの投稿に対してリクエストはありません</h1>
     @endif
