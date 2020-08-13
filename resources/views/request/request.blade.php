@@ -2,18 +2,21 @@
 
 @section('content')
 @if(count($camppost_borrow_useres)>0)
+    
     <h1>借りるリクエスト一覧</h1>
+                <div class="container">
+                <div  class="row justify-content-md-center">
     @foreach( $camppost_borrow_useres as $camppost_borrow_user)
       
-     
-               <div class="border">
+         
+             <div class="col-sm-7" style="max-width:600px;padding-bottom:10px;">
                 <img class="mr-2 rounded" src="{{ Gravatar::get($camppost_borrow_user->camppost->user->email, ['size' => 50]) }}" alt="">
                 {!! link_to_route('users.show',$camppost_borrow_user->camppost->user->name,['user'=>$camppost_borrow_user->camppost->user->id]) !!}
                 
-             <li class="media mb-3">
+            
                 
                 <div class="media-body">
-                    <div class="card" style="width:20rem;">
+                    <div class="card" style="">
                         <div class="img">
                 <img class="card-img-top" src={{$camppost_borrow_user->camppost->image}} alt="">
                         </div>
@@ -61,9 +64,11 @@
             @endif
         </div>
       </div>
-    </div>
-    <p>この投稿に対して {!! link_to_route('users.show',$camppost_borrow_user->user->name,['user'=>$camppost_borrow_user->user->id]) !!}さんがリクエストをしています</p>
+      <p>この投稿に対して {!! link_to_route('users.show',$camppost_borrow_user->user->name,['user'=>$camppost_borrow_user->user->id]) !!}さんがリクエストをしています</p>
     <p>リクエスト時間:{{$camppost_borrow_user->created_at}}</p>
+    </div>
+    </div>
+    </div>
     @endforeach
     @else
         <h1>現在あなたの投稿に対してリクエストはありません</h1>

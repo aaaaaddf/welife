@@ -6,23 +6,22 @@
 @endif
 @if(count($campposts) > 0)
     
-            <ul class="list-unstyled">
+           
                 <div class="container">
-                <div  class="row Masonry-2">
+                <div  class="row justify-content-md-center">
             @foreach($campposts as $camppost)
-              
-                     <div class="col-md-6">
+             
+            <div class="col-sm-7" style="max-width:600px;padding-bottom:10px;">
         
             <div class="profile">
                 <img class="mr-2 rounded" src="{{ Gravatar::get($camppost->user->email, ['size' => 50]) }}" alt="">
                 {!! link_to_route('users.show',$camppost->user->name,['user'=>$camppost->user->id]) !!}
                 </div>          
-             <li class="media mb-3">
                 
-                <div class="media-body">
-                    <div class="card" style="width:20rem;">
+                <div class="media-body ">
+                    <div class="card" style="">
                         <div class="img">
-                <img class="card-img-top" src={{$camppost->image}} alt="">
+                <img class="card-img-top " src={{$camppost->image}} alt="">
                         </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
@@ -43,18 +42,20 @@
                                           <span>{{ $item->name }}</span>
                                          @endforeach
                 </li>
-                </ul>
-            
+            </ul>
                 @if($user->id!=$camppost->user_id)
                     <p>どのくらい借りる？</p>
                     {!! Form::open(['route'=>['camppost_borrows.store','id' => $camppost->id],'method'=>'POST']) !!}
-                    <div class="form-group">
-                        {!! Form::label('start_date','開始日') !!}
-                        {!! Form::date('start_date', now()->format('Y-m-d'), ['class' => 'form-control']) !!}
+                     <div class="form-group @if(!empty($errors->first('start_date'))) has-error @endif">
+                        <label style="font-weight:bold;">開始日:</label>
+                        <input name="start_date" type="date" / class="form-control">
+                        <span class="help-block">{{ $errors->first('start_date') }}</span>
                     </div>
-                    <div class="form-group">
-                        {!! Form::label('end_date',"最終日") !!}
-                        {!! Form::date('end_date', now()->format('Y-m-d'), ['class' => 'form-control']) !!}
+                    
+                  <div class="form-group @if(!empty($errors->first('end_date'))) has-error @endif">
+                        <label style="font-weight:bold;">最終日:</label>
+                        <input name="end_date" type="date" / class="form-control">
+                        <span class="help-block">{{ $errors->first('end_date') }}</span>
                     </div>
                     {!! Form::submit('借りる', ['class' => 'btn btn-secondary']) !!}
                     {!! Form::close() !!}
@@ -81,14 +82,13 @@
             @endif
                 </div>
             </div>
-            </li>
+           
                 </div>
                 
             
           
         @endforeach
         
-        </ul>
         </div>
         </div>
     

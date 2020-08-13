@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="/css/campposts.scss">
 <div class="top">
 @if (count($errors) > 0)
-    <p>もう一度投稿してください</p>
+    <p>もう一度投稿もしくは借りるリクエストをしてください</p>
 @endif
 <?php
      $user = \App\User::findOrFail(Auth::user()->id);
 ?>
 
-<div class="top-profile">
+<div class="top-profile box17">
  <img class="mr-2 rounded" src="{{ Gravatar::get($user->email, ['size' => 50]) }}" alt="">
  {!! link_to_route('users.show',$user->name,['user'=>$user->id]) !!}
 <button class="btn btn-primary" data-toggle="modal" data-target="#modal-example">

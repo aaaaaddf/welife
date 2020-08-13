@@ -13,6 +13,9 @@ class CamppostBorrowsController extends Controller
     public function store(Request $request,$id){
         
         $camppost = \App\Camppost::findOrFail($id);
+         
+        $today = date("Y-m-d");
+        $nextmonth = date("Y-m-d", strtotime("1 month"));
         
          $query = \App\CamppostBorrow::query();
          $query->where('user_id',Auth::user()->id);
@@ -27,9 +30,13 @@ class CamppostBorrowsController extends Controller
             ]);
          }else{
              $request->validate([
-            'start_date'=>'required',
-            'end_date'=>'required',
+            'start_date'=>'required|date|after_or_equal:'.$today.'|before:'.$nextmonth,
+            'end_date'=>'required|date|after_or_equal:' . $today . '|before:' . $nextmonth.'|after:start_date',
             ]);
+            
+             if($validation->fails()){
+                return redirect()->back()->withErrors($validation->errors())->withInput();
+            }
           
         $camppost_borrows = $request->user()->camppost_borrows()->create([
                 'user_id'=>Auth::user()->id,

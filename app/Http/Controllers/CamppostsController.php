@@ -9,21 +9,25 @@ class CamppostsController extends Controller
 {
     public function store(Request $request){
         
-        
+        $today = date("Y-m-d");
+        $nextmonth = date("Y-m-d", strtotime("1 month"));
        
         $inputs = $request->all();
         
+        
+        
         $rules =[
              'file' => 'required|max:10240|mimes:jpeg,gif,png',
-            'start_date'=>"required",
-            'end_date'=>'required',
+            'start_date'=>'required|date|after_or_equal:'.$today.'|before:'.$nextmonth,
+            'end_date'=>'required|date|after_or_equal:' . $today . '|before:' . $nextmonth.'|after:start_date',
             'special'=>'required',
             'prefecture_id'=>'required',
             'items_id'=>'required',
             ];
             
             $validation = \Validator::make($inputs,$rules);
-             
+            
+            
             
             if($validation->fails()){
                 return redirect()->back()->withErrors($validation->errors())->withInput();
@@ -49,6 +53,13 @@ class CamppostsController extends Controller
                return redirect("users/{$user->id}");
                
     }
+    
+    public function withValidator(Validator $validator)
+{
+    $validator->sometimes('end_date', 'after_or_equal:start_date', function ($input) {
+        return !is_null($input->start_date);
+    });
+}
     
     public function create(){
         $prefectures = \App\Prefecture::orderBy('id','asc')->get()->pluck('name', 'id');
