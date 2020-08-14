@@ -55,7 +55,7 @@ jobs:
     machine:
       enabled: true
     environment:
-      HEROKU_APP: welife
+      HEROKU_APP: welife-20011120
     steps:
       - checkout
       - run:
