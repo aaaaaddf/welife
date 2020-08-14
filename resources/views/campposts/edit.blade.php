@@ -44,10 +44,16 @@
             </div>
             
             <div class="form-group">
+               
+              
+              
+             
              @foreach($camppost->camppost_item as $item)
-              {{ Form::select("items_id[]",$items,$item->items_id,[ 'class' => 'form-control' , 'multiple' => 'multiple']) }}
+              <?php
+                $items_id[]=$item->items_id;
+              ?>
              @endforeach
-         
+         {{ Form::select("items_id[]",$items,$items_id,[ 'class' => 'form-control' , 'multiple' => 'multiple']) }}
              <?php 
                /* foreach ($items as $key => $item){
                   
