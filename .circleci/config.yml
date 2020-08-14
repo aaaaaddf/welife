@@ -45,9 +45,9 @@ jobs:
           command: |
             pwd
             ls -la
-            #chmod +x -R ./build/tools
-            ./vendor/bin/phpunit
-            #./build/tools/phing-2.16.3.phar -verbose
+            chmod +x -R ./build/tools
+            #./vendor/bin/phpunit
+            ./build/tools/phing-2.16.3.phar -verbose
       - store_artifacts:
           path: ./build
 
