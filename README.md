@@ -24,7 +24,6 @@ Welifeは、キャンプ用品をシェアリングすることができるCtoC�
 ![リクエスト確認機能](img/request_confirmation.png)
 ### 投稿一覧機能
 ![投稿一覧機能](img/index.png)
-![]
 ##  技術一覧
 - 使用言語
     - PHP,HTML,CSS,Javascript
