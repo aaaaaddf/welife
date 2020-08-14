@@ -48,9 +48,27 @@ class CamppostsController extends Controller
                 
             $camppost->item()->sync($request->items_id);
              $user = \Auth::user();
+             
+             $data=[];
+        
+            if(\Auth::check()){
+                $user = \Auth::user();
+                $prefectures = \App\Prefecture::orderBy('id','asc')->get()->pluck('name', 'id');
+                $prefectures = $prefectures -> prepend('都道府県','');
+           
+                $items = \App\Item::orderBy('id','asc')->get()->pluck('name','id');
+                $campposts = \App\Camppost::orderBy('created_at','desc')->paginate(10);
+                
+                $data=[
+                    'user'=>$user,
+                    'campposts'=>$campposts,
+                    'prefectures'=>$prefectures,
+                    'items'=>$items
+                    ];
+                 }
               
    
-               return redirect("users/{$user->id}");
+               return view('welcome',$data);
                
     }
     

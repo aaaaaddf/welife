@@ -61,13 +61,13 @@
                     {!! Form::open(['route'=>['camppost_borrows.store','id' => $camppost->id],'method'=>'POST']) !!}
                      <div class="form-group @if(!empty($errors->first('start_date'))) has-error @endif">
                         <label style="font-weight:bold;">開始日:</label>
-                        <input name="start_date" type="date" / class="form-control">
+                        <input name="start_date" type="date" / class="form-control" value="{{ old('start_date',date('Y-m-d')) }}">
                         <span class="help-block">{{ $errors->first('start_date') }}</span>
                     </div>
                     
                   <div class="form-group @if(!empty($errors->first('end_date'))) has-error @endif">
                         <label style="font-weight:bold;">最終日:</label>
-                        <input name="end_date" type="date" / class="form-control">
+                        <input name="end_date" type="date" / class="form-control" value="{{ old('end_date',date('Y-m-d')) }}">
                         <span class="help-block">{{ $errors->first('end_date') }}</span>
                     </div>
                     {!! Form::submit('借りる', ['class' => 'btn btn-secondary']) !!}
