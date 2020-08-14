@@ -66,6 +66,8 @@
       </div>
       <p>この投稿に対して {!! link_to_route('users.show',$camppost_borrow_user->user->name,['user'=>$camppost_borrow_user->user->id]) !!}さんがリクエストをしています</p>
     <p>リクエスト時間:{{$camppost_borrow_user->created_at}}</p>
+    <span>開始日:{{$camppost_borrow_user->start_date}}から最終日:{{$camppost_borrow_user->end_date}}</span>
+    <p>この期間でリクエストをしています</p>
     </div>
     @endforeach
     </div>

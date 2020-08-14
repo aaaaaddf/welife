@@ -19,7 +19,7 @@ class CamppostsController extends Controller
         $rules =[
              'file' => 'required|max:10240|mimes:jpeg,gif,png',
             'start_date'=>'required|date|after_or_equal:'.$today.'|before:'.$nextmonth,
-            'end_date'=>'required|date|after_or_equal:' . $today . '|before:' . $nextmonth.'|after:start_date',
+            'end_date'=>'required|date|after_or_equal:' . $today . '|before:' . $nextmonth.'|after_or_equal:start_date',
             'special'=>'required',
             'prefecture_id'=>'required',
             'items_id'=>'required',

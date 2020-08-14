@@ -32,7 +32,7 @@ class CamppostBorrowsController extends Controller
               $inputs = $request->all();
              $rules=[
                  'start_date'=>'required|date|after_or_equal:'.$today.'|before:'.$nextmonth,
-            'end_date'=>'required|date|after_or_equal:' . $today . '|before:' . $nextmonth.'|after:start_date',
+            'end_date'=>'required|date|after_or_equal:' . $today . '|before:' . $nextmonth.'|after_or_equal:start_date',
             
                  ];
              $validation = \Validator::make($inputs,$rules);

@@ -40,8 +40,13 @@
     
     <div class="form-group @if(!empty($errors->first('items_id'))) has-error @endif">
         <label style="font-weight:bold;">貸し出す商品(複数選択可能)</label>
-        
-              {!! Form::select("items_id[]",$items,null,['class' => 'form-control','multiple' => 'multiple']) !!}
+         
+             <?php 
+               foreach ($items as $key => $item){
+                    echo '<input type="checkbox" name="items_id" value="'.$key.'">'.$item.'</option>';
+                }
+                
+              ?>
          <span class="help-block">{{ $errors->first('items_id') }}</span>
     </div>
     
