@@ -1,5 +1,5 @@
 # Welife
-アプリURL:https://welife-20011120.herokuapp.com/　
+アプリURL:https://welife-20011120.herokuapp.com/
 Welifeは、キャンプ用品をシェアリングすることができるCtoCサービスです。
 お金がない学生でもWelifeを使うことでキャンプを手軽にできるようになるし、
 貸している側は年に数回しか使わなかったキャンプ用品が
