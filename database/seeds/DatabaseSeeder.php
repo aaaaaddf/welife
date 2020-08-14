@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       $this->call(['PrefecturesSeeder','ItemsSeeder',]);
+       $this->call(['PrefecturesSeeder','ItemsSeeder','UsersTableSeeder','CamppostsTableSeeder','Camppost_itemsTableSeeder']);
     
     }
 }
