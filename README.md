@@ -24,19 +24,19 @@ Welifeは、キャンプ用品をシェアリングすることができるCtoC�
 
 ## Welifeの機能
 ### リクエスト機能（投稿に対して借りたいと意思表明する機能）
-![リクエスト機能](img/request.png)
+![リクエスト機能](img/resized/request.png)
 ### ログイン、サインアップ機能
-![ログイン、サインアップ機能](img/login.png)
-![ログイン、サインアップ機能](img/sign_up.png)
+![ログイン、サインアップ機能](img/resized/login.png)
+![ログイン、サインアップ機能](img/resized/sign_up.png)
 ### 検索機能
-![検索機能](img/search.png)
+![検索機能](img/resized/search.png)
 ### 投稿機能
-![投稿機能](img/post.png)
+![投稿機能](img/resized/post.png)
 ### 投稿編集機能
-![投稿編集機能](img/edit.png)
+![投稿編集機能](img/resized/edit.png)
 ### リクエスト確認機能
-![リクエスト確認機能](img/request_confirmation.png)
+![リクエスト確認機能](img/resized/request_confirmation.png)
 ### 投稿一覧機能
-![投稿一覧機能](img/index.png)
+![投稿一覧機能](img/resized/index.png)
 - ページネーション機能
 - レスポンシシブ対応
